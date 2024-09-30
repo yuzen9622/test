@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="student" class="stu"></ul>
+    <ul id="student1" class="stu2"></ul>
+  </body>
+
+  <script>
+    let studentEl = document.querySelector("#student");
+    console.log(studentEl);
+
+    let array = [];
+    let objArr = [
+      { state: true, name: "劉", studId: "1234567" },
+      { state: true, name: "曹", studId: "12345612dwada7" },
+    ];
+
+    objArr.map((item, key) => {
+      if (item.state) {
+        studentEl.innerHTML += `
+ <li>${item.name} </li>
+  <li>${item.studId} </li>
+ `;
+      }
+    });
+  </script>
+</html>
