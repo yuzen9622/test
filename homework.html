@@ -7,12 +7,14 @@
   </head>
   <body>
     <input type="text" id="input" />
-    <button onclick="add()">新增</button>
+    <button type="button" onclick="add()">新增</button>
+
     <ol id="data"></ol>
   </body>
 
   <script>
-    let datas = [];
+    let localData = localStorage.getItem("todo");
+    let datas = localData ? JSON.parse(localData) : [];
     let todoEl = document.querySelector("#data");
     let inputEl = document.querySelector("#input");
 
@@ -31,11 +33,13 @@
             del(key);
           });
         });
+        localStorage.setItem("todo", JSON.stringify(data));
       }
     }
 
     function add() {
       //看是不是為空直
+      inputEl.focus();
       if (inputEl.value !== "") {
         datas.push(inputEl.value);
         inputEl.value = "";
