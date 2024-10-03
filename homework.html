@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <button onclick="add()">新增</button>
+    <ol id="data"></ol>
+  </body>
+
+  <script>
+    let datas = [];
+    let todoEl = document.querySelector("#data");
+    let inputEl = document.querySelector("#input");
+
+    function renderData(data) {
+      if (data) {
+        todoEl.innerHTML = "";
+        //每一個run過
+        data.map((value, index) => {
+          //index 0,1,2,3
+          todoEl.innerHTML += `<li>${value} <button class="del-btns" >刪除</button></li>`;
+        });
+
+        let delBtnsEl = document.querySelectorAll(".del-btns");
+        delBtnsEl?.forEach((element, key) => {
+          element.addEventListener("click", () => {
+            del(key);
+          });
+        });
+      }
+    }
+
+    function add() {
+      //看是不是為空直
+      if (inputEl.value !== "") {
+        datas.push(inputEl.value);
+        inputEl.value = "";
+      }
+
+      renderData(datas);
+    }
+
+    function delAll() {
+      datas = [];
+      renderData(datas);
+    }
+
+    function del(key) {
+      //從key開始刪除一個
+      //key 1
+      //0,1,2
+      //a,b,c
+
+      datas.splice(key, 1);
+      renderData(datas);
+    }
+
+    renderData(datas);
+  </script>
+</html>
